@@ -1,0 +1,24 @@
+conference_agenda.tab_agenda:
+  path: '/conference-agenda/page'
+  defaults:
+    _controller: '\Drupal\conference_agenda\Controller\AgendaController::displayAgenda'
+    _title: 'Agenda Program Block'
+  requirements:
+    _permission: 'access content'
+  options:
+    dialog: true
+conference_agenda.settings_form:
+  path: '/admin/config/conference-agenda/settings'
+  defaults:
+    _form: '\Drupal\conference_agenda\Form\ConferenceAgendaSettingsForm'
+    _title: 'Agenda Program Settings'
+  requirements:
+    _permission: 'administer site configuration'
+
+conference_agenda.page:
+  path: '/conference-agenda/agenda'
+  defaults:
+    _controller: '\Drupal\conference_agenda\Controller\AgendaPageController::content'
+    _title: 'Conference Agenda'
+  requirements:
+    _permission: 'access content'

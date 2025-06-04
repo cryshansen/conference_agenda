@@ -1,0 +1,8 @@
+name: 'Conference Agenda'
+type: module
+description: 'Create an conference speaker agenda  block for the conference page. Use of excel library to load the agenda listings.'
+core_version_requirement: ^8 || ^9  || ^10
+package: EMTP Custom
+version: 1.0
+
+

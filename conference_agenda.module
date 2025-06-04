@@ -1,0 +1,93 @@
+<?php
+
+/**
+ * @file
+ * Main module file for the Appointment Calendar module.
+ */
+
+//TODO: each tab needs to be expanded upon. 
+//TODO: complete tab one display doesnt work in modal but displays in its own path. 
+//TODO:integrate the page calendar display with the correct path to modal popup with date.
+/**
+ * Implements hook_theme().
+ *
+ * Register a module or theme's theme implementations.
+ * The implementations declared by this hook specify how a 
+ * particular render array is to be rendered as HTML.
+ *
+ * See: https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Render%21theme.api.php/function/hook_theme/8.2.x
+ *
+ * If you change this method, clear theme registry and routing 
+ * table 'drush cc theme-registry' and 'drush cc router'.
+ */
+function conference_agenda_theme($existing, $type, $theme, $path) {
+
+  return [
+    'conference_agenda_tab_theme_hook' => [
+      'render element' => 'children',
+      'template' => ' conference-agenda-theme-hook',
+      'path' => $path . '/templates',
+      'variables' => [
+        'title' => 'Conference Program',
+        'description' => 'Preliminary Agenda',
+        'tab_labels' => [],
+        'tab_panels' => [],
+        'site_name' => 'EMTP',
+        'date' => '',
+        
+        'content_1' => [
+          'template' => 'conference-agenda-tab1-theme-hook.html.twig',
+          'path' => $path . '/templates',
+          'variables' => [
+            'title' =>'',
+            'description' => '',
+            
+          ], // Add variables for the inner Twig file if needed
+        ],
+        'content_2' => [
+          'template' => 'conference_agenda-tab2-theme-hook.html.twig',
+          'path' => $path . '/templates',
+          'variables' => [
+            'title' => 'Day 2',
+            'description' => '',
+            
+          ], // Add variables for the inner Twig file if needed
+        ],
+        'content_3' => [
+          'template' => 'conference-agenda-tab3-theme-hook.html.twig',
+          'path' => $path . '/templates',
+          'variables' => [
+            'title' => 'Tab 3',
+            'description' => '',
+            'appointment_user' => [1, 'first_name','last_name','email','phone','subject','description'],
+          ], // Add variables for the inner Twig file if needed
+        ],
+        'content_4' => [
+          'template' => 'conference-agenda-tab4-theme-hook.html.twig',
+          'path' => $path . '/templates',
+          'variables' => [
+            'title' => 'Tab 4',
+            'description' => '',
+            'appointment_user' => [1, 'first_name','last_name','email','phone','subject','description'],
+          ], // Add variables for the inner Twig file if needed
+        ],
+      ],
+    ],
+
+  ];
+
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page templates.
+ */
+function conference_agenda_preprocess_page(&$variables) {
+  // Get the current route name.
+  $current_route_name = \Drupal::routeMatch()->getRouteName();
+
+  // Check if the current route matches your desired route.
+  if ($current_route_name == 'conference_agenda.tab_agenda') {
+    // Attach the JavaScript file specific to this route.
+   // $variables['#attached']['library'][] = 'conference_agenda/agenda-scripts';
+  }
+}

@@ -1,0 +1,9 @@
+agenda-scripts:
+  version: 1.x
+  js:
+    js/agenda.js: {}
+  css:
+    theme:
+      css/agenda.css: {}
+  dependencies:
+    - core/jquery
